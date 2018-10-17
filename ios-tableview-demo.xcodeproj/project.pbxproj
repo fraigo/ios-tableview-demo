@@ -8,24 +8,25 @@
 
 /* Begin PBXBuildFile section */
 		0BC73CFE2176C3A5005BE697 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BC73CFD2176C3A5005BE697 /* AppDelegate.swift */; };
-		0BC73D002176C3A5005BE697 /* EmojiViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BC73CFF2176C3A5005BE697 /* EmojiViewController.swift */; };
+		0BC73D002176C3A5005BE697 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BC73CFF2176C3A5005BE697 /* TableViewController.swift */; };
 		0BC73D032176C3A5005BE697 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0BC73D012176C3A5005BE697 /* Main.storyboard */; };
 		0BC73D052176C3AA005BE697 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0BC73D042176C3AA005BE697 /* Assets.xcassets */; };
 		0BC73D082176C3AA005BE697 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0BC73D062176C3AA005BE697 /* LaunchScreen.storyboard */; };
-		0BC73D102176C8CF005BE697 /* Emoji.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BC73D0F2176C8CF005BE697 /* Emoji.swift */; };
-		0BC73D122176D004005BE697 /* EmojiTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BC73D112176D004005BE697 /* EmojiTableViewCell.swift */; };
+		0BC73D122176D004005BE697 /* DataTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BC73D112176D004005BE697 /* DataTableViewCell.swift */; };
+		0BC73D152176E3D7005BE697 /* TableItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BC73D142176E3D7005BE697 /* TableItem.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		0BC73CFA2176C3A5005BE697 /* ios-tableview-demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ios-tableview-demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0BC73CFD2176C3A5005BE697 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		0BC73CFF2176C3A5005BE697 /* EmojiViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiViewController.swift; sourceTree = "<group>"; };
+		0BC73CFF2176C3A5005BE697 /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		0BC73D022176C3A5005BE697 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0BC73D042176C3AA005BE697 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0BC73D072176C3AA005BE697 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0BC73D092176C3AA005BE697 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		0BC73D0F2176C8CF005BE697 /* Emoji.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Emoji.swift; sourceTree = "<group>"; };
-		0BC73D112176D004005BE697 /* EmojiTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiTableViewCell.swift; sourceTree = "<group>"; };
+		0BC73D112176D004005BE697 /* DataTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataTableViewCell.swift; sourceTree = "<group>"; };
+		0BC73D132176DFE4005BE697 /* ios-tableview-demo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "ios-tableview-demo.entitlements"; sourceTree = "<group>"; };
+		0BC73D142176E3D7005BE697 /* TableItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableItem.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,14 +59,15 @@
 		0BC73CFC2176C3A5005BE697 /* ios-tableview-demo */ = {
 			isa = PBXGroup;
 			children = (
+				0BC73D132176DFE4005BE697 /* ios-tableview-demo.entitlements */,
 				0BC73CFD2176C3A5005BE697 /* AppDelegate.swift */,
-				0BC73CFF2176C3A5005BE697 /* EmojiViewController.swift */,
+				0BC73CFF2176C3A5005BE697 /* TableViewController.swift */,
 				0BC73D012176C3A5005BE697 /* Main.storyboard */,
 				0BC73D042176C3AA005BE697 /* Assets.xcassets */,
 				0BC73D062176C3AA005BE697 /* LaunchScreen.storyboard */,
 				0BC73D092176C3AA005BE697 /* Info.plist */,
-				0BC73D0F2176C8CF005BE697 /* Emoji.swift */,
-				0BC73D112176D004005BE697 /* EmojiTableViewCell.swift */,
+				0BC73D112176D004005BE697 /* DataTableViewCell.swift */,
+				0BC73D142176E3D7005BE697 /* TableItem.swift */,
 			);
 			path = "ios-tableview-demo";
 			sourceTree = "<group>";
@@ -102,6 +104,11 @@
 				TargetAttributes = {
 					0BC73CF92176C3A5005BE697 = {
 						CreatedOnToolsVersion = 9.4.1;
+						SystemCapabilities = {
+							com.apple.SafariKeychain = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -141,9 +148,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0BC73D102176C8CF005BE697 /* Emoji.swift in Sources */,
-				0BC73D002176C3A5005BE697 /* EmojiViewController.swift in Sources */,
-				0BC73D122176D004005BE697 /* EmojiTableViewCell.swift in Sources */,
+				0BC73D002176C3A5005BE697 /* TableViewController.swift in Sources */,
+				0BC73D152176E3D7005BE697 /* TableItem.swift in Sources */,
+				0BC73D122176D004005BE697 /* DataTableViewCell.swift in Sources */,
 				0BC73CFE2176C3A5005BE697 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -288,6 +295,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "ios-tableview-demo/ios-tableview-demo.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8SUQQ8935B;
 				INFOPLIST_FILE = "ios-tableview-demo/Info.plist";
@@ -306,6 +314,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "ios-tableview-demo/ios-tableview-demo.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8SUQQ8935B;
 				INFOPLIST_FILE = "ios-tableview-demo/Info.plist";

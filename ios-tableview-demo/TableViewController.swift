@@ -12,10 +12,7 @@ class TableViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     
-    var emojis: [Emoji] = [
-        Emoji(symbol: "😀", name: "Smiley", description: "A smiley face"),
-        Emoji(symbol: "😉", name: "Winking", description: "A winking face")
-    ]
+    var tableData: [TableItem] = [TableItem]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,7 +39,7 @@ class TableViewController: UIViewController {
     
     func getJsonFromUrl(){
         //creating a NSURL
-        let dataURL : String = "https://api.github.com/users/fraigo/repos?sort=updated&per_page=100"
+        let dataURL : String = "https://api.github.com/search/repositories?q=ios"
         let url = NSURL(string: dataURL)
         
         //fetching the data from the url
@@ -52,11 +49,10 @@ class TableViewController: UIViewController {
                 print(error!)
             } else {
                 if let usableData = data {
-                    let string = String(data: usableData, encoding: String.Encoding.utf8)
-                    print(string) //JSONSerialization
-                    if let jsonObj = try? JSONSerialization.jsonObject(with: data!, options: .allowFragments) as! NSArray {
-                        print(jsonObj)
-                    }
+                    //self.parseString(data: usableData)
+                    //self.parseArray(data: usableData)
+                    self.parseDictionary(data: usableData)
+                    
                 }
             }
         
@@ -72,9 +68,41 @@ class TableViewController: UIViewController {
         }).resume()
     }
     
+    func parseString(data: Data){
+        let string = String(data: data, encoding: String.Encoding.utf8)
+        print(string!)
+        
+    }
     
-   
-
+    func parseArray(data: Data){
+        if let jsonArray = try? JSONSerialization.jsonObject(with: data, options: .allowFragments) as! NSArray {
+            for item in jsonArray {
+                self.tableData.append(TableItem(item as! NSDictionary))
+            }
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                self.tableView.reloadData()
+            }
+            
+        }
+    }
+    
+    func parseDictionary(data: Data){
+        if let jsonObj = try? JSONSerialization.jsonObject(with: data, options: .allowFragments) as? NSDictionary {
+            let descriptor: NSSortDescriptor = NSSortDescriptor(key: "stargazers_count", ascending: false)
+            if let itemArray = jsonObj!.value(forKey: "items") as? NSArray {
+                let sortedResults: NSArray = itemArray.sortedArray(using: [descriptor]) as NSArray
+                for item in sortedResults {
+                    self.tableData.append(TableItem(item as! NSDictionary))
+                }
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                    self.tableView.reloadData()
+                }
+            }
+        }
+    }
+    
+    
+    
 
 }
 
@@ -87,7 +115,7 @@ extension TableViewController: UITableViewDelegate {
 extension TableViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return emojis.count
+        return tableData.count
     }
     
     func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
@@ -95,15 +123,15 @@ extension TableViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
-        let emoji = emojis.remove(at: sourceIndexPath.row)
-        emojis.insert(emoji, at: destinationIndexPath.row)
+        let emoji = tableData.remove(at: sourceIndexPath.row)
+        tableData.insert(emoji, at: destinationIndexPath.row)
         tableView.reloadData()
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "EmojiCell", for: indexPath) as! EmojiTableViewCell
-        let emoji = emojis[indexPath.row]
-        cell.configCell(with: emoji)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ItemCell", for: indexPath) as! DataTableViewCell
+        let item = tableData[indexPath.row]
+        cell.configCell(with: item)
         cell.showsReorderControl = true
         
         return cell
@@ -111,7 +139,7 @@ extension TableViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            emojis.remove(at: indexPath.row)
+            tableData.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .automatic)
         }
     }
